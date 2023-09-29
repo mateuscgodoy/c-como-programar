@@ -15,6 +15,7 @@ int main(void)
 {
   int sum;
   int myPoint;
+  int turno = 1;
   float saldoBanca = 1000;
   float valorApostado = 0;
 
@@ -25,8 +26,9 @@ int main(void)
   do
   {
     gameStatus = CONTINUE;
-    sum = rollDice();
     valorApostado = 0;
+    
+    printf("\nTurno #%d\n", turno++);
 
     do
     {
@@ -41,19 +43,20 @@ int main(void)
 
     } while (valorApostado > saldoBanca);
 
+    sum = rollDice();
     switch (sum)
     {
     case 7:
     case 11:
       gameStatus = WON;
-      printf("Assim vou acabar quebrando!!");
+      printf("Assim vou acabar quebrando!!\n");
       saldoBanca += valorApostado;
       break;
     case 2:
     case 3:
     case 12:
       saldoBanca -= valorApostado;
-      printf("Continue tentando! A sorte sempre muda.");
+      printf("Continue tentando! A sorte sempre muda.\n");
       gameStatus = LOST;
       break;
     default:
